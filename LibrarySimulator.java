@@ -24,32 +24,75 @@ public class LibrarySimulator {
 			System.out.print("Enter choice: ");
 
 			choice = scan.nextInt();
+            Member currentUser = null;
 
 			switch (choice) {
-			case 1:
-				System.out.println("\n---- Welcome Back Mr " + user1.getName() + " ----");
-				break;
+        case 1:
+            System.out.println("\n---- Welcome Back Mr "+user1.getName()+" ----");
+            currentUser=user1;
+            break;
+        case 2:
+            System.out.println("\n---- Welcome Back Mr "+user2.getName()+" ----");
+            currentUser=user2;
+            break;
+        case 3:
+            System.out.println("\n---- Welcome Back Mr "+user3.getName()+" ----");
+            currentUser=user3;
+            break;
+        case 4:
+            System.out.println("\n---- Welcome to the Administrator Menu ----");
+            break;
+        case 5:
+            System.out.println("\n---- See you later ----");
+            break;
+        default:
+            System.out.println("Invalid choice, Please try again.");
+    }
+    int user_choice;
+    boolean exitUserMenu = false;
 
-			case 2:
-				System.out.println("\n---- Welcome Back Mr " + user2.getName() + " ----");
-				break;
+    while (choice>=1 && choice<=3 && !exitUserMenu) {
 
-			case 3:
-				System.out.println("\n---- Welcome Back Mr " + user3.getName() + " ----");
-				break;
+        System.out.println("\nWhat would you like to do?");
+        System.out.println("1-View the number of Borrowed Books.");
+        System.out.println("2-Borrow a Book.");
+        System.out.println("3-Return a Book.");
+        System.out.println("4-View a Session Summary.");
+        System.out.println("5-Exit to the Main Menu.");
 
-			case 4:
-				System.out.println("\n---- Welcome to the Administrator Menu ----");
-				break;
+        System.out.print("Enter choice: ");
+        user_choice = scan.nextInt();
+        System.out.println("");
 
-			case 5:
-				System.out.println("\n---- See you later ----");
-				break;
+        switch (user_choice) {
 
-			default:
-				System.out.println("Invalid choice, Please try again.");
-			}
+        case 1:
+            System.out.println("You have "+currentUser.getBorrowedCount()+" books.");
+            break;
 
+        case 2:
+            System.out.println("Please note that each book have a 0.50sr fee.");
+            currentUser.borrowOne();
+            break;
+
+        case 3:
+            currentUser.returnOne();
+            break;
+
+        case 4:
+            currentUser.displayStatistics();
+            break;
+
+        case 5:
+            exitUserMenu=true;
+            currentUser.reset();
+            break;
+
+        default:
+            System.out.println("Invalid choice, Please try again.");
+            break;
+        }
+    }
 		} while (choice != 5);
 
 	}
