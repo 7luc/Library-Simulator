@@ -61,6 +61,28 @@ public class Member {
             return(false);
         }
     }
+
+    public void viewBorrowedCount() {
+	TotalViewBorrowed++;
+	numViewBorrowed++;
+	System.out.println("Your current borrowed book(s) is: "+borrowedCount);
+    }
+
+    public void displayStatistics() {
+        System.out.println("--- Session Summary ---");
+        System.out.println("Books currently borrowed: " + borrowedCount);
+        System.out.println("Viewed borrowed count: " + numViewBorrowed + " time(s)");
+        System.out.println("You have Borrowed a book " + numBorrows + " time(s)");
+        System.out.println("You have Returned a book " + numReturns + " time(s)");
+        System.out.printf("Total fees this session: %.2f\n", sessionFees);
+    }
+
+    public void reset() {
+        numViewBorrowed = 0;
+        numBorrows = 0;
+        numReturns = 0;
+        sessionFees = 0;
+    }
     
 	public int getId() {
 		return (id);
