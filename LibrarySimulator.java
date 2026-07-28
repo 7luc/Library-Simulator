@@ -93,6 +93,52 @@ public class LibrarySimulator {
             break;
         }
     }
+    String password = null;
+    if(choice == 4) {
+        scan.nextLine();
+        System.out.print("Enter admin password: ");  
+        password = scan.nextLine();  
+                        
+        if (!password.equals("admin")) {
+            System.out.println("Invalid password, Access denied.");
+            System.out.println("");
+        }
+    }
+
+    int admin_choice;
+    boolean exitAdminMenu = false;
+
+    while (choice==4 && !exitAdminMenu && password.equals("admin") ) {
+        //Admin Interface
+        System.out.println("\nWhat would you like to do?");
+        System.out.println("1-View the Total Revenues.");
+        System.out.println("2-View the Most Frequent Operation.");
+        System.out.println("3-Exit to the Main Menu.");
+        
+        System.out.print("Enter choice: ");
+        admin_choice=scan.nextInt();
+        System.out.println("");
+        
+        switch(admin_choice) {
+        case 1:
+            System.out.printf("The Total Revenues is %.2f\n", Member.TotalRevenue);
+            break;
+        case 2:
+            if (Member.TotalBorrows>Member.TotalReturns)
+                System.out.println("the most commonly performed user operation is borrow with "+Member.TotalBorrows+" times.");      
+            else if (Member.TotalBorrows<Member.TotalReturns)
+                System.out.println("the most commonly performed user operation is return with "+Member.TotalReturns+" times.");
+            else
+                System.out.println("Borrow and return operations are tied, with "+Member.TotalBorrows+" for both.");
+            break;
+        case 3:
+            exitAdminMenu=true;
+            break;
+        default:
+            System.out.println("Invalid choice, Please try again.");
+            break;
+        }
+    }
 		} while (choice != 5);
 
 	}
